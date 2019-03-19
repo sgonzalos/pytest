@@ -5,11 +5,12 @@ import os
 import glob
 import pandas as pd
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 # ====== fn_plot ====== 
 def fn_plot(filename):
-    print(filename)
-    print("==== READ CSV ====")
+    #print(filename)
+    #print("==== READ CSV ====")
     
     df = pd.read_csv(filename,skiprows=6,nrows=1,header=None)
     ST_ANG_TRQ = df[25][0]
@@ -26,7 +27,7 @@ def fn_plot(filename):
     
     df_new = df.drop(df.index[DEL_IND+1:])
     
-    print("==== PLOT ====")
+    #print("==== PLOT ====")
     fig, ax = plt.subplots()
     ax.plot(df_new["ANG"],df_new["TRQ"])
     #ALL file
@@ -38,7 +39,7 @@ def fn_plot(filename):
     ax.grid()
     ax.set(xlabel = 'Angle(deg)', ylabel = 'Torque(Nm)',
            title = os.path.basename(filename).replace(" ",""))
-    fig.savefig(filename+".png")
+    fig.savefig(filename.replace(" ","")+".png")
     plt.close(fig)
 # ====== fn_plot ====== 
 
@@ -56,7 +57,7 @@ axall.set(xlabel = 'Angle(deg)', ylabel = 'Torque(Nm)',
        title = "ALL")
 # ====== ALL SETTING ====== 
 
-for filename in glob.glob(directory + '/*.csv'):
+for filename in tqdm(glob.glob(directory + '/*.csv')):
     fn_plot(filename)
 
 figall.savefig(directory + "\\" + "all"+".png")

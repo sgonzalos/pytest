@@ -5,18 +5,19 @@ import os
 import glob
 import pandas as pd
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 # ====== fn_plot ====== 
 def fn_plot(filename):
-    print(filename)
-    print("==== READ CSV ====")
+    #print(filename)
+    #print("==== READ CSV ====")
     
     df = pd.read_csv(filename,skiprows=8)
     df = df[df.LoadcellData !=0 ]
     df.No = df.No / 100
     df.LoadcellData = df.LoadcellData / 100
 
-    print("==== PLOT ====")
+    #print("==== PLOT ====")
     fig, ax = plt.subplots()
     ax.plot(df.No, df.LoadcellData)
     #ALL file
@@ -46,7 +47,7 @@ axall.set(xlabel = 'length(mm)', ylabel = 'Loadcel(kN)',
        title = "ALL")
 # ====== ALL SETTING ====== 
 
-for filename in glob.glob(directory + '/*.csv'):
+for filename in tqdm(glob.glob(directory + '/*.csv')):
     fn_plot(filename)
 
 figall.savefig(directory + "\\" + "all"+".png")

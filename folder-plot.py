@@ -27,7 +27,7 @@ def fn_plot(filename):
 
     ax.grid()
     ax.set(xlabel = 'length(mm)', ylabel = 'Loadcel(kN)',
-           title = filename)
+           title = os.path.basename(filename))
     fig.savefig(filename+".png")
     plt.close(fig)
 # ====== fn_plot ====== 

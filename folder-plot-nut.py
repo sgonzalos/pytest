@@ -17,14 +17,14 @@ def fn_plot(filename):
     END_TRQ=df[18][0]
     
     df = pd.read_csv(filename,skiprows=8,usecols=[0,2],names=("TRQ","ANG"))
-    MAX_ANG = df.max()["ANG"]
+    #MAX_ANG = df.max()["ANG"]
+    index = df.query("TRQ == @ST_ANG_TRQ").index[0]
+    #df["ANG"][index]
+    df["ANG"] = df["ANG"] - df["ANG"][index]
     
-    df["ANG"] = df["ANG"] - (MAX_ANG - END_ANG)
-    MAX_ANG = df.max()["ANG"]
+    DEL_IND = df.query("TRQ == @END_TRQ").index.max()
     
-    index = df.query("TRQ == @END_TRQ and ANG == @MAX_ANG").index[0]
-    
-    df_new = df.drop(df.index[index+1:])
+    df_new = df.drop(df.index[DEL_IND+1:])
     
     print("==== PLOT ====")
     fig, ax = plt.subplots()

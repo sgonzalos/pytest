@@ -37,7 +37,7 @@ def fn_plot(filename):
 
     ax.grid()
     ax.set(xlabel = 'Angle(deg)', ylabel = 'Torque(Nm)',
-           title = filename)
+           title = os.path.basename(filename).replace(" ",""))
     fig.savefig(filename+".png")
     plt.close(fig)
 # ====== fn_plot ====== 

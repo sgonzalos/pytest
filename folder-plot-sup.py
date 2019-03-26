@@ -48,7 +48,6 @@ def fn_plot(filename):
 # ====== fn_plot ====== 
 
 
-
 directory = "data-sup"
 
 # ====== ALL SETTING ====== 

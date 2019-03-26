@@ -49,7 +49,7 @@ def fn_plot(filename):
 
 
 
-directory = "data5"
+directory = "data-sup"
 
 # ====== ALL SETTING ====== 
 figall, axall = plt.subplots()

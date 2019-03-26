@@ -49,7 +49,7 @@ def fn_plot(filename):
 
 
 
-directory = "data3"
+directory = "data-o-ring"
 
 # ====== ALL SETTING ====== 
 figall, axall = plt.subplots()

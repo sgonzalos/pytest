@@ -49,7 +49,7 @@ def fn_plot(filename):
 
 
 
-directory = "data4"
+directory = "data-plunger"
 
 # ====== ALL SETTING ====== 
 figall, axall = plt.subplots()
